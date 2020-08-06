@@ -3,9 +3,43 @@ import 'package:flutter/rendering.dart';
 import 'dart:math';
 
 void main() => runApp(MaterialApp(
-  home: new HomePage2(),
+  home: new MyTextfield(),
 ));
 
+class MyTextfield extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    //debugPaintSizeEnabled = true;
+    TextEditingController controller = new TextEditingController();
+    return Scaffold(
+      appBar: AppBar(title: Text('MyCard'),),
+      body: TextField(
+        controller: controller,
+        onEditingComplete: (){
+          print('onEditingComplete');
+          print(controller.text);
+        },
+        decoration: new InputDecoration(
+          icon: Icon(Icons.access_time),
+          labelText: '日期',
+          focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(
+              color: Colors.lightBlue
+            ),
+          ),
+          helperText: '請輸入日期',
+          hintText: '請輸入日期',
+          suffix: IconButton(
+            icon: Icon(Icons.close),
+            onPressed: () {
+              FocusScope.of(context).requestFocus(new FocusNode());
+            },
+          )
+        ),
+      ),
+    );
+  }
+}
 class HomePage extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
