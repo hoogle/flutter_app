@@ -3,9 +3,31 @@ import 'package:flutter/rendering.dart';
 import 'dart:math';
 
 void main() => runApp(MaterialApp(
-  home: new MyTextfield(),
+  home: new MyListview(),
 ));
 
+class MyListview extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar (
+        title: Text('Listview'),
+      ),
+      body: ListView.builder(
+        //itemCount: 10,
+        itemBuilder: (context, idx){
+          print(idx);
+        return Card(
+          child: Container(
+            height:150,
+            color: Colors.lightBlueAccent,
+            child: Text('$idx'),
+          ),
+        );
+      })
+    );
+  }
+}
 class MyTextfield extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
@@ -24,7 +46,7 @@ class MyTextfield extends StatelessWidget{
           labelText: '日期',
           focusedBorder: UnderlineInputBorder(
             borderSide: BorderSide(
-              color: Colors.lightBlue
+              color: Colors.cyan,
             ),
           ),
           helperText: '請輸入日期',
