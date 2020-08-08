@@ -3,9 +3,29 @@ import 'package:flutter/rendering.dart';
 import 'dart:math';
 
 void main() => runApp(MaterialApp(
-  home: new MyListview(),
+  home: new MyNetworkImage(),
 ));
 
+class MyNetworkImage extends StatelessWidget{
+  final String bannerImage = 'https://ci6.googleusercontent.com/proxy/xuDwJiAdT0iIQzdmIebaazEY9pzcXmki64y9VOFjtbrrIaEgLrT-WM2qwCQLf2WVE5SaSSOwJaiMznw9RIhdNlXr0i6JvzTj1Z0pBMbDFf4gd6078j45RgO7TvZMvkMuz2Wbxt_slVDd=s0-d-e1-ft#http://mailmall.post.gov.tw/post_a/template/20200722736bf/1090801edm/1090801edm_03.jpg';
+  @override
+  Widget build(BuildContext context) {
+    //debugPaintSizeEnabled = true;
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Network image'),
+      ),
+    body:
+      Image.network(
+        bannerImage,
+        height: 200,
+        alignment: Alignment.bottomCenter,
+        fit: BoxFit.scaleDown,
+      ),
+      //Image.asset('lib/images/blackjack.jpg'),
+    );
+  }
+}
 class MyListview extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
