@@ -9,11 +9,9 @@ void main() => runApp(MaterialApp(
 class MyGridview extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
-    final title = 'Grid view';
-    return new MaterialApp(
-      home: new Scaffold(
+    return Scaffold(
         appBar: AppBar(
-          title: new Text(title),
+          title: Text('Grid view'),
         ),
         //body: GridView.count(
         //  crossAxisCount: 2,
@@ -30,21 +28,20 @@ class MyGridview extends StatelessWidget{
 
         body: GridView.builder(
           gridDelegate:
-              SliverGridDelegateWithMaxCrossAxisExtent(
-                maxCrossAxisExtent: 150,
-                childAspectRatio: 1.25,
-              ),
+            SliverGridDelegateWithMaxCrossAxisExtent(
+              maxCrossAxisExtent: 150,
+              childAspectRatio: 1.25,
+            ),
           itemBuilder: (context, index) {
             return Card(child:
               Container(
-                color: Color.fromARGB(150, 44, 192, 79),
+                color: Color.fromARGB(150, 125, 92, 79),
                 child: Text('Index: $index'),
               ),
             );
           }
         ),
-      ),
-    );
+      );
   }
 }
 
