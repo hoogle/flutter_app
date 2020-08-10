@@ -3,8 +3,50 @@ import 'package:flutter/rendering.dart';
 import 'dart:math';
 
 void main() => runApp(MaterialApp(
-  home: new MyNetworkImage(),
+  home: new MyGridview(),
 ));
+
+class MyGridview extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    final title = 'Grid view';
+    return new MaterialApp(
+      home: new Scaffold(
+        appBar: AppBar(
+          title: new Text(title),
+        ),
+        //body: GridView.count(
+        //  crossAxisCount: 2,
+        //  childAspectRatio: 1.25,
+        //  children: List.generate(100, (index) {
+        //    return Card(child:
+        //      Container(
+        //        color: Color.fromARGB(150, 44, 192, 79),
+        //        child: Text('Index: $index'),
+        //      ),
+        //  );
+        // ),
+        //),
+
+        body: GridView.builder(
+          gridDelegate:
+              SliverGridDelegateWithMaxCrossAxisExtent(
+                maxCrossAxisExtent: 150,
+                childAspectRatio: 1.25,
+              ),
+          itemBuilder: (context, index) {
+            return Card(child:
+              Container(
+                color: Color.fromARGB(150, 44, 192, 79),
+                child: Text('Index: $index'),
+              ),
+            );
+          }
+        ),
+      ),
+    );
+  }
+}
 
 class MyNetworkImage extends StatelessWidget{
   final String bannerImage = 'https://ci6.googleusercontent.com/proxy/xuDwJiAdT0iIQzdmIebaazEY9pzcXmki64y9VOFjtbrrIaEgLrT-WM2qwCQLf2WVE5SaSSOwJaiMznw9RIhdNlXr0i6JvzTj1Z0pBMbDFf4gd6078j45RgO7TvZMvkMuz2Wbxt_slVDd=s0-d-e1-ft#http://mailmall.post.gov.tw/post_a/template/20200722736bf/1090801edm/1090801edm_03.jpg';
