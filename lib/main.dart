@@ -29,14 +29,25 @@ class MyGridview extends StatelessWidget{
         body: GridView.builder(
           gridDelegate:
             SliverGridDelegateWithMaxCrossAxisExtent(
-              maxCrossAxisExtent: 150,
+              maxCrossAxisExtent: 200,
               childAspectRatio: 1.25,
             ),
           itemBuilder: (context, index) {
             return Card(child:
               Container(
-                color: Color.fromARGB(150, 125, 92, 79),
-                child: Text('Index: $index'),
+                child:
+                  Text(
+                    '$index',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  padding: EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    color: Color.fromARGB(90, 185, 42, 161),
+                    borderRadius: BorderRadius.circular(6)
+                  ),
               ),
             );
           }
