@@ -3,8 +3,58 @@ import 'package:flutter/rendering.dart';
 import 'dart:math';
 
 void main() => runApp(MaterialApp(
-  home: new MyGridview(),
+  home: new MyBottomNavigationBar(),
 ));
+
+class MyBottomNavigationBar extends StatefulWidget {
+  @override
+  _MyBottomNavigationBarState createState() => _MyBottomNavigationBarState();
+}
+
+class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
+  int index = 0;
+  List<Widget> pages = [
+    Container(color: Colors.lightBlue),
+    Container(color: Colors.amber),
+    Container(color: Colors.greenAccent),
+    Container(color: Colors.deepOrange)
+  ];
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('BottonNavigationBar'),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+          currentIndex: index,
+          onTap: (int idx) {
+            setState(() {
+              index = idx;
+            });
+          },
+          items: [
+            BottomNavigationBarItem(
+                icon: Icon(Icons.add, color: Colors.black38),
+                title: Text('Add', style: TextStyle(color: Colors.black))
+            ),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.access_alarm, color: Colors.black38),
+                title: Text('Alert', style: TextStyle(color: Colors.black))
+            ),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.account_circle, color: Colors.black38),
+                title: Text('Member', style: TextStyle(color: Colors.black))
+            ),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.airplanemode_active, color: Colors.black38),
+                title: Text('Flight', style: TextStyle(color: Colors.black))
+            ),
+          ]),
+      body: pages[index],
+    );
+  }
+}
 
 class MyGridview extends StatelessWidget{
   @override
