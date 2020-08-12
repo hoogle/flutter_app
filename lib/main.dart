@@ -9,7 +9,7 @@ void main() => runApp(
       initialRoute: '/',
       routes: {
         '/': (context) {return MyNavigation();},
-        '/page2': (context) {return Page2(textData: '123',);},
+        '/page2': (context) {return Page2(textData: '');},
       },
     )
 );
