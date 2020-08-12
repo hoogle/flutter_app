@@ -1,10 +1,67 @@
+//import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'dart:math';
 
-void main() => runApp(MaterialApp(
-  home: new MyBottomNavigationBar(),
-));
+void main() => runApp(
+    MaterialApp(
+      initialRoute: '/',
+      routes: {
+        '/': (context) {return MyNavigation();},
+        '/page2': (context) {return Page2(textData: '123',);},
+      },
+    )
+);
+
+class MyNavigation extends StatefulWidget {
+  @override
+  _MyNavigationState createState() => _MyNavigationState();
+}
+
+class _MyNavigationState extends State<MyNavigation> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Page1')),
+      body: SizedBox.expand(
+        child: Container(
+          color: Colors.green,
+          child: Text('Page1'),
+        )),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.autorenew),
+        onPressed: () {
+          //Navigator.pushNamed(context, '/page2');
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+            return Page2(textData: 'String from Page1',);
+          })).then((value) {print(value);});
+        }),
+    );
+  }
+}
+
+class Page2 extends StatelessWidget {
+  final String textData;
+  Page2({Key key, @required this.textData}):super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Page2')),
+      body: SizedBox.expand(
+        child: Container(
+          color: Colors.cyan,
+          child: Text(textData),
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.autorenew),
+          onPressed: () {
+            Navigator.pop(context, 'String back from Page2');
+          }),
+    );
+  }
+}
 
 class MyBottomNavigationBar extends StatefulWidget {
   @override
